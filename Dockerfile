@@ -16,6 +16,7 @@ RUN apt-get update \
 RUN cd ${BASE_DIR} && drush -y dl drupal-7 --drupal-project-rename ${DRUPAL_PROJECT_NAME} \
     && cd ${DRUPAL_DIR} \
     && mkdir sites/all/modules/contrib && mkdir sites/all/modules/custom && mkdir sites/default/files \
+    && cp sites/default/default.settings.php sites/default/settings.php \
     && drush -y pm-download views \
     && groupadd -r drupal && useradd -r -g drupal drupal \
     && fix-drupal-permissions.sh --drupal_path=${DRUPAL_DIR} --drupal_user=drupal --httpd_group=www-data
