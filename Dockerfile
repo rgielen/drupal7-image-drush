@@ -6,6 +6,9 @@ ENV DRUPAL_DIR ${BASE_DIR}/${DRUPAL_PROJECT_NAME}
 
 COPY scripts/fix-drupal-permissions.sh /usr/local/bin
 
+# If existent, drush will use contrib subdir for managed modules
+# See https://www.drupal.org/node/371298
+
 RUN cd ${BASE_DIR} && drush dl drupal-7 --drupal-project-rename ${DRUPAL_PROJECT_NAME} \
     && cd ${DRUPAL_DIR} \
     && mkdir sites/all/modules/contrib && mkdir sites/all/modules/custom \
