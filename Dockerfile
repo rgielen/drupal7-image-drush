@@ -13,10 +13,10 @@ RUN apt-get update \
 
 # If existent, drush will use contrib subdir for managed modules
 # See https://www.drupal.org/node/371298
-RUN cd ${BASE_DIR} && drush dl drupal-7 --drupal-project-rename ${DRUPAL_PROJECT_NAME} \
+RUN cd ${BASE_DIR} && drush -y dl drupal-7 --drupal-project-rename ${DRUPAL_PROJECT_NAME} \
     && cd ${DRUPAL_DIR} \
     && mkdir sites/all/modules/contrib && mkdir sites/all/modules/custom && mkdir sites/default/files \
-    && drush pm-download views \
+    && drush -y pm-download views \
     && groupadd -r drupal && useradd -r -g drupal drupal \
     && fix-drupal-permissions.sh --drupal_path=${DRUPAL_DIR} --drupal_user=drupal --httpd_group=www-data
 
