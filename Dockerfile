@@ -7,7 +7,6 @@ RUN cd ${BASE_DIR} && drush -y dl drupal-7 --drupal-project-rename ${DRUPAL_PROJ
     && mkdir ${DRUPAL_MODULES_DIR}/contrib && mkdir ${DRUPAL_MODULES_DIR}/custom && mkdir ${DRUPAL_FILES_DIR} \
     && cp sites/default/default.settings.php sites/default/settings.php \
     && chmod ug+w sites/default/default.settings.php \
-    && groupadd -r drupal && useradd -r -g drupal drupal \
     && fix-drupal-permissions.sh --drupal_path=${DRUPAL_DIR} --drupal_user=drupal --httpd_group=www-data
 
 VOLUME ${DRUPAL_MODULES_DIR} ${DRUPAL_THEMES_DIR} ${DRUPAL_FILES_DIR}
